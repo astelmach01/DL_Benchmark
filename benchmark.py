@@ -1,3 +1,5 @@
+import psutil
+import platform
 import logging
 import time
 
@@ -7,7 +9,7 @@ from torchvision import datasets, transforms
 from torchvision.models import vit_b_16
 from tqdm import tqdm
 
-BATCH_SIZE = 64
+BATCH_SIZE = 32
 
 
 logging.basicConfig(
@@ -116,6 +118,16 @@ def main():
     data_loader = prepare_data()
     training_time = train_model(model, data_loader, device)
     print(f"Training Time: {training_time} seconds")
+    
+    # Get system info
+    device = platform.system()
+    processor = platform.processor()
+    ram = str(round(psutil.virtual_memory().total / (1024.0 **3)))+" GB"
+    storage = str(round(psutil.disk_usage('/').total / (1024.0 **3))) + " GB SSD"
+
+    # Print stats
+    print("Device\tProcessor\tRAM\tStorage\tBatch Size\tTime (h:m:s)")
+    print(f"{device}\t{processor}\t{ram}\t{storage}\t{BATCH_SIZE}\t{benchmark_time}")
 
 
 if __name__ == "__main__":

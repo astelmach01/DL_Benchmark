@@ -1,4 +1,4 @@
-# DL_Benchmark
+# Deep Learning Benchmark
 
 A benchmark on training deep learning models.
 

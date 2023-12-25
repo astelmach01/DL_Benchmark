@@ -127,7 +127,7 @@ def main():
 
     # Print stats
     print("Device\tProcessor\tRAM\tStorage\tBatch Size\tTime (h:m:s)")
-    print(f"{device}\t{processor}\t{ram}\t{storage}\t{BATCH_SIZE}\t{benchmark_time}")
+    print(f"{device}\t{processor}\t{ram}\t{storage}\t{BATCH_SIZE}\t{training_time}")
 
 
 if __name__ == "__main__":

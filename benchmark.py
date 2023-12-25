@@ -7,6 +7,9 @@ from torchvision import datasets, transforms
 from torchvision.models import vit_b_16
 from tqdm import tqdm
 
+BATCH_SIZE = 64
+
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
@@ -47,7 +50,7 @@ def prepare_data():
     dataset = datasets.CIFAR100(
         root="./data", train=True, download=True, transform=transform
     )
-    loader = torch.utils.data.DataLoader(dataset, batch_size=64, shuffle=True)
+    loader = torch.utils.data.DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
     return loader
 
 
@@ -70,7 +73,7 @@ def calculate_f1(outputs, labels):
 def train_model(model, data_loader, device):
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-    num_epochs = 5  # Adjust as needed
+    num_epochs = 1  # Adjust as needed
 
     start_time = time.time()
     for epoch in range(num_epochs):
